@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+
+<html class="h-full antialiased dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Usuários - Gestão de Inventário</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;900&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#fadfb8",
+                        "on-primary-container": "#8590a6",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#eae7e9",
+                        "primary-fixed": "#d8e3fb",
+                        "on-tertiary-container": "#a38c6a",
+                        "on-tertiary-fixed": "#271902",
+                        "on-tertiary-fixed-variant": "#564427",
+                        "inverse-surface": "#303032",
+                        "surface-container": "#f0edef",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "on-surface": "#1b1b1d",
+                        "on-background": "#1b1b1d",
+                        "inverse-primary": "#bcc7de",
+                        "surface": "#fbf8fa",
+                        "on-primary-fixed": "#111c2d",
+                        "surface-bright": "#fbf8fa",
+                        "primary-container": "#1e293b",
+                        "secondary": "#585f6c",
+                        "on-secondary-fixed": "#151c27",
+                        "on-secondary-fixed-variant": "#404754",
+                        "tertiary-container": "#35260c",
+                        "surface-dim": "#dcd9db",
+                        "outline-variant": "#c5c6cd",
+                        "secondary-fixed": "#dce2f3",
+                        "outline": "#75777d",
+                        "surface-container-highest": "#e4e2e3",
+                        "secondary-container": "#dce2f3",
+                        "on-tertiary": "#ffffff",
+                        "background": "#fbf8fa",
+                        "tertiary-fixed-dim": "#ddc39d",
+                        "on-primary-fixed-variant": "#3c475a",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#5e6572",
+                        "surface-variant": "#e4e2e3",
+                        "surface-container-low": "#f5f3f4",
+                        "primary-fixed-dim": "#bcc7de",
+                        "surface-tint": "#545f73",
+                        "primary": "#091426",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f3f0f2",
+                        "on-surface-variant": "#45474c",
+                        "tertiary": "#1e1200"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "container-max": "1440px",
+                        "stack-lg": "24px",
+                        "stack-md": "16px",
+                        "sidebar-width": "260px",
+                        "margin-page": "32px",
+                        "stack-xs": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-sm": ["Inter"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "title-sm": ["Hanken Grotesk"],
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "data-mono": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "data-mono": ["13px", { "lineHeight": "18px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid theme('colors.outline-variant');
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+        }
+        
+        .switch-input:checked + div {
+            background-color: theme('colors.primary');
+        }
+        
+        .switch-input:checked + div > div {
+            transform: translateX(100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background h-full font-body-sm overflow-hidden flex">
+<!-- SideNavBar (Shared Component) -->
+<aside class="fixed left-0 top-0 h-full w-[260px] bg-primary dark:bg-primary-container border-r border-outline-variant dark:border-outline shadow-sm z-30">
+<div class="flex flex-col h-full py-margin-page">
+<!-- Brand -->
+<div class="px-margin-page mb-stack-lg">
+<div class="flex items-center gap-stack-sm">
+<span class="material-symbols-outlined text-[32px] text-on-primary dark:text-on-primary-container" style="font-variation-settings: 'FILL' 1;">
+                        inventory_2
+                    </span>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary dark:text-on-primary-container tracking-tight">ESTOQUE</h1>
+<p class="font-body-sm text-body-sm text-on-primary-container">Gestão de Inventário</p>
+</div>
+</div>
+</div>
+<!-- Main Navigation -->
+<nav class="flex-1 space-y-1">
+<!-- Dashboard -->
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<!-- Produtos -->
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-caps text-label-caps">Produtos</span>
+</a>
+<!-- Movimentações -->
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span class="font-label-caps text-label-caps">Movimentações</span>
+</a>
+<!-- Histórico -->
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-caps text-label-caps">Histórico</span>
+</a>
+<!-- Usuários (Active) -->
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm bg-secondary-container/10 border-l-4 border-secondary text-secondary-fixed font-bold hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label-caps text-label-caps">Usuários</span>
+</a>
+<!-- Relatórios -->
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-caps text-label-caps">Relatórios</span>
+</a>
+<!-- Backup e Segurança -->
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">security</span>
+<span class="font-label-caps text-label-caps">Backup e Segurança</span>
+</a>
+<!-- Configurações -->
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps">Configurações</span>
+</a>
+</nav>
+<!-- Footer Navigation -->
+<div class="mt-auto space-y-1">
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-caps text-label-caps">Perfil</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-caps text-label-caps">Sair</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- TopAppBar (Shared Component) -->
+<header class="fixed top-0 right-0 w-[calc(100%-260px)] h-20 bg-surface/80 dark:bg-background/80 backdrop-blur-md border-b border-outline-variant z-20 transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center px-margin-page h-full">
+<!-- Left: Brand / Title Area (Mobile focus, hidden on desktop if sidebar is visible) -->
+<div class="hidden md:flex items-center gap-stack-sm">
+<!-- Search could go here if search_bar: on_left implies it's in the header -->
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-md font-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" placeholder="Buscar..." type="text"/>
+</div>
+</div>
+<!-- Right: Actions -->
+<div class="flex items-center gap-stack-md ml-auto">
+<button class="text-secondary font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-secondary font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<button class="ml-stack-sm px-4 py-2 bg-primary text-on-primary font-label-caps text-label-caps rounded-md hover:bg-primary/90 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Novo Produto
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-[260px] pt-20 h-full w-full max-w-[calc(1440px+260px)] overflow-y-auto pb-margin-page">
+<div class="px-margin-page py-margin-page max-w-container-max mx-auto">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-stack-lg">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface">Usuários</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Gerencie os acessos e permissões do sistema.</p>
+</div>
+<button class="px-6 py-2 bg-primary text-on-primary font-title-sm text-title-sm rounded-md hover:bg-primary/90 transition-colors shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined">person_add</span>
+                    Novo Usuário
+                </button>
+</div>
+<!-- Content Grid (Bento Style Layout) -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Main Users Table Section -->
+<div class="col-span-12 xl:col-span-8 space-y-stack-md">
+<div class="glass-card rounded-lg overflow-hidden flex flex-col h-full min-h-[500px]">
+<!-- Table Toolbar -->
+<div class="p-stack-md border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<h3 class="font-title-sm text-title-sm text-on-surface">Listagem de Usuários</h3>
+<div class="flex gap-2">
+<button class="p-1.5 text-secondary hover:bg-surface-container rounded-md transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+<button class="p-1.5 text-secondary hover:bg-surface-container rounded-md transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Usuário</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Nome</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Perfil</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Acesso Fin.</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Último Acesso</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider text-right">Ações</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-on-surface divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group cursor-pointer">
+<td class="py-3 px-4 font-data-mono text-data-mono font-medium">admin.sistema</td>
+<td class="py-3 px-4">Carlos Mendes</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-container text-on-primary font-label-caps text-[10px]">
+                                                Administrador
+                                            </span>
+</td>
+<td class="py-3 px-4">
+<span class="material-symbols-outlined text-green-600 text-[18px]">check_circle</span>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 text-green-700">
+<span class="w-2 h-2 rounded-full bg-green-500"></span> Ativo
+                                            </span>
+</td>
+<td class="py-3 px-4 text-on-surface-variant">Hoje, 08:30</td>
+<td class="py-3 px-4 text-right">
+<button class="text-secondary opacity-0 group-hover:opacity-100 transition-opacity hover:text-primary">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group cursor-pointer bg-primary-fixed/30 border-l-2 border-primary">
+<td class="py-3 px-4 font-data-mono text-data-mono font-medium">ana.silva</td>
+<td class="py-3 px-4 font-semibold">Ana Silva</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-caps text-[10px]">
+                                                Gerente
+                                            </span>
+</td>
+<td class="py-3 px-4">
+<span class="material-symbols-outlined text-green-600 text-[18px]">check_circle</span>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 text-green-700">
+<span class="w-2 h-2 rounded-full bg-green-500"></span> Ativo
+                                            </span>
+</td>
+<td class="py-3 px-4 text-on-surface-variant">Ontem, 17:45</td>
+<td class="py-3 px-4 text-right">
+<button class="text-secondary opacity-0 group-hover:opacity-100 transition-opacity hover:text-primary">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group cursor-pointer">
+<td class="py-3 px-4 font-data-mono text-data-mono font-medium">joao.op</td>
+<td class="py-3 px-4">João Pedro</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-caps text-[10px]">
+                                                Operador
+                                            </span>
+</td>
+<td class="py-3 px-4">
+<span class="material-symbols-outlined text-error text-[18px]">cancel</span>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 text-green-700">
+<span class="w-2 h-2 rounded-full bg-green-500"></span> Ativo
+                                            </span>
+</td>
+<td class="py-3 px-4 text-on-surface-variant">12/05/2024</td>
+<td class="py-3 px-4 text-right">
+<button class="text-secondary opacity-0 group-hover:opacity-100 transition-opacity hover:text-primary">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group cursor-pointer opacity-60">
+<td class="py-3 px-4 font-data-mono text-data-mono font-medium">maria.inativa</td>
+<td class="py-3 px-4">Maria Costa</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-caps text-[10px]">
+                                                Operador
+                                            </span>
+</td>
+<td class="py-3 px-4">
+<span class="material-symbols-outlined text-error text-[18px]">cancel</span>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 text-error">
+<span class="w-2 h-2 rounded-full bg-error"></span> Inativo
+                                            </span>
+</td>
+<td class="py-3 px-4 text-on-surface-variant">01/02/2024</td>
+<td class="py-3 px-4 text-right">
+<button class="text-secondary opacity-0 group-hover:opacity-100 transition-opacity hover:text-primary">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Pagination placeholder -->
+<div class="p-4 border-t border-outline-variant bg-surface-container-lowest flex justify-between items-center text-on-surface-variant font-body-sm">
+<span>Mostrando 1 a 4 de 24 usuários</span>
+<div class="flex gap-1">
+<button class="px-2 py-1 rounded bg-surface-container-low border border-outline-variant disabled:opacity-50" disabled="">&lt;</button>
+<button class="px-2 py-1 rounded bg-primary text-on-primary">1</button>
+<button class="px-2 py-1 rounded bg-surface-container-lowest border border-outline-variant hover:bg-surface-container-low">2</button>
+<button class="px-2 py-1 rounded bg-surface-container-lowest border border-outline-variant hover:bg-surface-container-low">3</button>
+<button class="px-2 py-1 rounded bg-surface-container-low border border-outline-variant">&gt;</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Edit Permissions Panel (Contextual to selected user Ana Silva) -->
+<div class="col-span-12 xl:col-span-4 flex flex-col gap-gutter">
+<!-- Selected User Context Card -->
+<div class="glass-card rounded-lg p-stack-lg bg-gradient-to-br from-surface-container-lowest to-surface-container-low">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-title-sm text-title-sm">
+                                AS
+                            </div>
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface">Ana Silva</h3>
+<p class="font-data-mono text-data-mono text-on-surface-variant text-xs mb-2">ana.silva</p>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-caps text-[10px]">
+                                    Gerente
+                                </span>
+</div>
+</div>
+</div>
+<!-- Permissions Editor -->
+<div class="glass-card rounded-lg flex-1 flex flex-col">
+<div class="p-stack-md border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<h3 class="font-title-sm text-title-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary">tune</span>
+                                Permissões de Acesso
+                            </h3>
+</div>
+<div class="p-stack-md flex-1 overflow-y-auto space-y-6">
+<!-- Operacional Category -->
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-4 pb-2 border-b border-outline-variant/50">Operacional</h4>
+<div class="space-y-4">
+<!-- Switch Item -->
+<label class="flex items-center justify-between cursor-pointer group">
+<div>
+<span class="font-body-md text-body-md font-medium text-on-surface">Cadastrar produtos</span>
+</div>
+<div class="relative inline-block w-10 h-5 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="switch-input absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer opacity-0 z-10" name="toggle" type="checkbox"/>
+<div class="block overflow-hidden h-5 rounded-full bg-outline-variant cursor-pointer transition-colors duration-200">
+<div class="w-5 h-5 bg-white rounded-full shadow-sm transform transition-transform duration-200 translate-x-5"></div>
+</div>
+</div>
+</label>
+<!-- Switch Item -->
+<label class="flex items-center justify-between cursor-pointer group">
+<div>
+<span class="font-body-md text-body-md font-medium text-on-surface">Editar produtos</span>
+</div>
+<div class="relative inline-block w-10 h-5 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="switch-input absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer opacity-0 z-10" name="toggle" type="checkbox"/>
+<div class="block overflow-hidden h-5 rounded-full bg-outline-variant cursor-pointer transition-colors duration-200">
+<div class="w-5 h-5 bg-white rounded-full shadow-sm transform transition-transform duration-200 translate-x-5"></div>
+</div>
+</div>
+</label>
+<!-- Switch Item -->
+<label class="flex items-center justify-between cursor-pointer group">
+<div>
+<span class="font-body-md text-body-md font-medium text-on-surface">Registrar entrada</span>
+</div>
+<div class="relative inline-block w-10 h-5 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="switch-input absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer opacity-0 z-10" name="toggle" type="checkbox"/>
+<div class="block overflow-hidden h-5 rounded-full bg-outline-variant cursor-pointer transition-colors duration-200">
+<div class="w-5 h-5 bg-white rounded-full shadow-sm transform transition-transform duration-200 translate-x-5"></div>
+</div>
+</div>
+</label>
+<!-- Switch Item -->
+<label class="flex items-center justify-between cursor-pointer group">
+<div>
+<span class="font-body-md text-body-md font-medium text-on-surface">Registrar saída</span>
+</div>
+<div class="relative inline-block w-10 h-5 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="switch-input absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer opacity-0 z-10" name="toggle" type="checkbox"/>
+<div class="block overflow-hidden h-5 rounded-full bg-outline-variant cursor-pointer transition-colors duration-200">
+<div class="w-5 h-5 bg-white rounded-full shadow-sm transform transition-transform duration-200 translate-x-5"></div>
+</div>
+</div>
+</label>
+</div>
+</div>
+<!-- Gestão e Financeiro Category -->
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-4 pb-2 border-b border-outline-variant/50">Gestão e Financeiro</h4>
+<div class="space-y-4">
+<!-- Switch Item -->
+<label class="flex items-center justify-between cursor-pointer group">
+<div>
+<span class="font-body-md text-body-md font-medium text-on-surface">Exportar dados</span>
+</div>
+<div class="relative inline-block w-10 h-5 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="switch-input absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer opacity-0 z-10" name="toggle" type="checkbox"/>
+<div class="block overflow-hidden h-5 rounded-full bg-outline-variant cursor-pointer transition-colors duration-200">
+<div class="w-5 h-5 bg-white rounded-full shadow-sm transform transition-transform duration-200 translate-x-5"></div>
+</div>
+</div>
+</label>
+<!-- Switch Item with Help Text -->
+<div class="flex flex-col gap-1">
+<label class="flex items-center justify-between cursor-pointer group">
+<div>
+<span class="font-body-md text-body-md font-medium text-on-surface flex items-center gap-1">
+                                                    Visualizar informações financeiras
+                                                    <span class="material-symbols-outlined text-[16px] text-on-surface-variant cursor-help" title="Permite ver preços de custo, margens de lucro e relatórios financeiros totais.">info</span>
+</span>
+</div>
+<div class="relative inline-block w-10 h-5 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="switch-input absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer opacity-0 z-10" name="toggle" type="checkbox"/>
+<div class="block overflow-hidden h-5 rounded-full bg-outline-variant cursor-pointer transition-colors duration-200">
+<div class="w-5 h-5 bg-white rounded-full shadow-sm transform transition-transform duration-200 translate-x-5"></div>
+</div>
+</div>
+</label>
+<p class="font-body-sm text-[11px] text-on-surface-variant pl-1">Acesso a preços de custo e margens.</p>
+</div>
+</div>
+</div>
+<!-- Administração Category -->
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-4 pb-2 border-b border-outline-variant/50">Administração de Sistema</h4>
+<div class="space-y-4">
+<!-- Switch Item -->
+<label class="flex items-center justify-between cursor-pointer group">
+<div>
+<span class="font-body-md text-body-md font-medium text-on-surface">Gerenciar usuários</span>
+</div>
+<div class="relative inline-block w-10 h-5 align-middle select-none transition duration-200 ease-in">
+<input class="switch-input absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer opacity-0 z-10" name="toggle" type="checkbox"/>
+<div class="block overflow-hidden h-5 rounded-full bg-outline-variant cursor-pointer transition-colors duration-200">
+<div class="w-5 h-5 bg-white rounded-full shadow-sm transform transition-transform duration-200 translate-x-0"></div>
+</div>
+</div>
+</label>
+<!-- Switch Item -->
+<label class="flex items-center justify-between cursor-pointer group">
+<div>
+<span class="font-body-md text-body-md font-medium text-on-surface text-error">Backup</span>
+</div>
+<div class="relative inline-block w-10 h-5 align-middle select-none transition duration-200 ease-in">
+<input class="switch-input absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer opacity-0 z-10" name="toggle" type="checkbox"/>
+<div class="block overflow-hidden h-5 rounded-full bg-outline-variant cursor-pointer transition-colors duration-200">
+<div class="w-5 h-5 bg-white rounded-full shadow-sm transform transition-transform duration-200 translate-x-0"></div>
+</div>
+</div>
+</label>
+<!-- Switch Item -->
+<label class="flex items-center justify-between cursor-pointer group">
+<div>
+<span class="font-body-md text-body-md font-medium text-on-surface text-error">Restore</span>
+</div>
+<div class="relative inline-block w-10 h-5 align-middle select-none transition duration-200 ease-in">
+<input class="switch-input absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer opacity-0 z-10" name="toggle" type="checkbox"/>
+<div class="block overflow-hidden h-5 rounded-full bg-outline-variant cursor-pointer transition-colors duration-200">
+<div class="w-5 h-5 bg-white rounded-full shadow-sm transform transition-transform duration-200 translate-x-0"></div>
+</div>
+</div>
+</label>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="p-stack-md border-t border-outline-variant bg-surface-container-lowest flex justify-end gap-2 mt-auto">
+<button class="px-4 py-2 border border-primary text-primary font-title-sm text-title-sm rounded-md hover:bg-surface-container-low transition-colors">Cancelar</button>
+<button class="px-4 py-2 bg-primary text-on-primary font-title-sm text-title-sm rounded-md hover:bg-primary/90 transition-colors">Salvar Alterações</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple logic to toggle switch styling classes natively without extra css if needed, 
+        // though CSS handles the visual translation fine via sibling selector.
+        document.querySelectorAll('.switch-input').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const track = this.nextElementSibling;
+                const knob = track.firstElementChild;
+                if(this.checked) {
+                    track.classList.remove('bg-outline-variant');
+                    track.classList.add('bg-primary');
+                    knob.classList.remove('translate-x-0');
+                    knob.classList.add('translate-x-5');
+                } else {
+                    track.classList.remove('bg-primary');
+                    track.classList.add('bg-outline-variant');
+                    knob.classList.remove('translate-x-5');
+                    knob.classList.add('translate-x-0');
+                }
+            });
+            
+            // Trigger initial state
+            if(checkbox.checked) {
+                const track = checkbox.nextElementSibling;
+                const knob = track.firstElementChild;
+                track.classList.remove('bg-outline-variant');
+                track.classList.add('bg-primary');
+                knob.classList.remove('translate-x-0');
+                knob.classList.add('translate-x-5');
+            }
+        });
+    </script>
+</body></html>

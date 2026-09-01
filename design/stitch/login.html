@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ESTOQUE - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;900&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#fadfb8",
+                      "on-primary-container": "#8590a6",
+                      "on-error-container": "#93000a",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-high": "#eae7e9",
+                      "primary-fixed": "#d8e3fb",
+                      "on-tertiary-container": "#a38c6a",
+                      "on-tertiary-fixed": "#271902",
+                      "on-tertiary-fixed-variant": "#564427",
+                      "inverse-surface": "#303032",
+                      "surface-container": "#f0edef",
+                      "on-error": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed-dim": "#c0c7d6",
+                      "on-surface": "#1b1b1d",
+                      "on-background": "#1b1b1d",
+                      "inverse-primary": "#bcc7de",
+                      "surface": "#fbf8fa",
+                      "on-primary-fixed": "#111c2d",
+                      "surface-bright": "#fbf8fa",
+                      "primary-container": "#1e293b",
+                      "secondary": "#585f6c",
+                      "on-secondary-fixed": "#151c27",
+                      "on-secondary-fixed-variant": "#404754",
+                      "tertiary-container": "#35260c",
+                      "surface-dim": "#dcd9db",
+                      "outline-variant": "#c5c6cd",
+                      "secondary-fixed": "#dce2f3",
+                      "outline": "#75777d",
+                      "surface-container-highest": "#e4e2e3",
+                      "secondary-container": "#dce2f3",
+                      "on-tertiary": "#ffffff",
+                      "background": "#fbf8fa",
+                      "tertiary-fixed-dim": "#ddc39d",
+                      "on-primary-fixed-variant": "#3c475a",
+                      "error": "#ba1a1a",
+                      "on-secondary-container": "#5e6572",
+                      "surface-variant": "#e4e2e3",
+                      "surface-container-low": "#f5f3f4",
+                      "primary-fixed-dim": "#bcc7de",
+                      "surface-tint": "#545f73",
+                      "primary": "#091426",
+                      "on-primary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "inverse-on-surface": "#f3f0f2",
+                      "on-surface-variant": "#45474c",
+                      "tertiary": "#1e1200"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-sm": "8px",
+                      "container-max": "1440px",
+                      "stack-lg": "24px",
+                      "stack-md": "16px",
+                      "sidebar-width": "260px",
+                      "margin-page": "32px",
+                      "stack-xs": "4px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "title-sm": [
+                              "Hanken Grotesk"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "data-mono": [
+                              "JetBrains Mono"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "title-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "data-mono": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Subtle glow for focused inputs */
+        .input-glow:focus-within {
+            box-shadow: 0 0 0 2px rgba(30, 41, 59, 0.2);
+            border-color: #1E293B;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background h-screen w-screen overflow-hidden flex font-body-md selection:bg-primary-container selection:text-white">
+<!-- Split Layout Container -->
+<div class="flex w-full h-full">
+<!-- Left Side: Branding (Visible only on md and up) -->
+<div class="hidden md:flex md:w-1/2 lg:w-[45%] bg-primary-container text-white flex-col justify-between p-margin-page relative overflow-hidden">
+<!-- Subtle abstract background element to prevent it from being completely flat -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.4) 0%, transparent 50%);"></div>
+<!-- Top: Brand Anchor -->
+<div class="z-10 mt-8 ml-8">
+<div class="flex items-center gap-2 text-on-primary">
+<span class="material-symbols-outlined text-[32px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-headline-md text-headline-md font-bold tracking-tight">ESTOQUE</span>
+</div>
+</div>
+<!-- Middle: Main Value Prop -->
+<div class="z-10 max-w-md mx-auto mb-24">
+<h1 class="font-display-lg text-display-lg text-on-primary mb-stack-md leading-tight">
+                    Gestão simples e segura do seu estoque.
+                </h1>
+<p class="font-body-md text-body-md text-primary-fixed-dim opacity-90 max-w-sm">
+                    Controle de inventário projetado para eficiência e precisão nas operações diárias.
+                </p>
+</div>
+<!-- Bottom: Optional subtle detail or blank space -->
+<div></div>
+</div>
+<!-- Right Side: Login Form Canvas -->
+<div class="w-full md:w-1/2 lg:w-[55%] flex flex-col justify-center items-center bg-surface relative">
+<!-- Mobile Brand Anchor (Only visible on small screens) -->
+<div class="absolute top-8 left-8 md:hidden flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[24px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-headline-md text-headline-md font-bold">ESTOQUE</span>
+</div>
+<!-- Form Container -->
+<div class="w-full max-w-md px-margin-page">
+<!-- Welcome Header -->
+<div class="mb-stack-lg text-center md:text-left">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-stack-xs">Bem-vindo</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Insira suas credenciais para continuar.</p>
+</div>
+<!-- Card Surface for Form (Level 1 Elevation) -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-stack-lg shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
+<form action="#" class="space-y-stack-md" method="POST">
+<!-- Email Field -->
+<div>
+<label class="block font-body-sm text-body-sm font-semibold text-on-surface mb-stack-xs" for="email">E-mail ou Usuário</label>
+<div class="relative group input-glow rounded-md transition-all duration-200">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline group-focus-within:text-primary transition-colors">person</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 border border-outline-variant rounded-md bg-transparent font-body-md text-body-md text-on-surface focus:outline-none focus:ring-0 focus:border-transparent transition-colors placeholder-outline" id="email" name="email" placeholder="exemplo@empresa.com.br" required="" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div>
+<div class="flex justify-between items-center mb-stack-xs">
+<label class="block font-body-sm text-body-sm font-semibold text-on-surface" for="password">Senha</label>
+</div>
+<div class="relative group input-glow rounded-md transition-all duration-200">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline group-focus-within:text-primary transition-colors">lock</span>
+</div>
+<input class="block w-full pl-10 pr-10 py-2 border border-outline-variant rounded-md bg-transparent font-body-md text-body-md text-on-surface focus:outline-none focus:ring-0 focus:border-transparent transition-colors placeholder-outline" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-outline hover:text-on-surface transition-colors focus:outline-none" type="button">
+<span class="material-symbols-outlined">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Remember Me & Forgot Password -->
+<div class="flex items-center justify-between pt-stack-xs">
+<div class="flex items-center">
+<input class="h-4 w-4 text-primary-container focus:ring-primary-container border-outline-variant rounded transition-colors cursor-pointer" id="remember-me" name="remember-me" type="checkbox"/>
+<label class="ml-2 block font-body-sm text-body-sm text-on-surface-variant cursor-pointer" for="remember-me">
+                                    Lembrar usuário
+                                </label>
+</div>
+<div class="text-sm">
+<a class="font-body-sm text-body-sm text-secondary hover:text-primary transition-colors focus:outline-none focus:underline" href="#">Esqueceu a senha?</a>
+</div>
+</div>
+<!-- Submit Action -->
+<div class="pt-stack-sm">
+<button class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm font-label-caps text-label-caps text-white bg-primary-container hover:bg-primary-container/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-container transition-colors duration-200" type="submit">
+                                Entrar
+                            </button>
+</div>
+</form>
+</div>
+<!-- Footer Context -->
+<div class="mt-stack-lg text-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant/70">
+                        Use suas credenciais para acessar o sistema.
+                    </p>
+</div>
+</div>
+</div>
+</div>
+</body></html>

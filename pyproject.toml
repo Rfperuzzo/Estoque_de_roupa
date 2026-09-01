@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "estoque-de-roupa"
+version = "1.1.0"
+description = "Sistema desktop local para controle de estoque e vendas"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "customtkinter>=5.2,<6",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8,<10",
+]
+build = [
+    "pyinstaller>=6.16,<7",
+]
+
+[tool.setuptools]
+py-modules = ["banco", "interface", "main"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra --basetemp=.pytest-tmp"

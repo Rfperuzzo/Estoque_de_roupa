@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Relatórios - ESTOQUE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;900&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#fadfb8",
+                        "on-primary-container": "#8590a6",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#eae7e9",
+                        "primary-fixed": "#d8e3fb",
+                        "on-tertiary-container": "#a38c6a",
+                        "on-tertiary-fixed": "#271902",
+                        "on-tertiary-fixed-variant": "#564427",
+                        "inverse-surface": "#303032",
+                        "surface-container": "#f0edef",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "on-surface": "#1b1b1d",
+                        "on-background": "#1b1b1d",
+                        "inverse-primary": "#bcc7de",
+                        "surface": "#fbf8fa",
+                        "on-primary-fixed": "#111c2d",
+                        "surface-bright": "#fbf8fa",
+                        "primary-container": "#1e293b",
+                        "secondary": "#585f6c",
+                        "on-secondary-fixed": "#151c27",
+                        "on-secondary-fixed-variant": "#404754",
+                        "tertiary-container": "#35260c",
+                        "surface-dim": "#dcd9db",
+                        "outline-variant": "#c5c6cd",
+                        "secondary-fixed": "#dce2f3",
+                        "outline": "#75777d",
+                        "surface-container-highest": "#e4e2e3",
+                        "secondary-container": "#dce2f3",
+                        "on-tertiary": "#ffffff",
+                        "background": "#fbf8fa",
+                        "tertiary-fixed-dim": "#ddc39d",
+                        "on-primary-fixed-variant": "#3c475a",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#5e6572",
+                        "surface-variant": "#e4e2e3",
+                        "surface-container-low": "#f5f3f4",
+                        "primary-fixed-dim": "#bcc7de",
+                        "surface-tint": "#545f73",
+                        "primary": "#091426",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f3f0f2",
+                        "on-surface-variant": "#45474c",
+                        "tertiary": "#1e1200"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "container-max": "1440px",
+                        "stack-lg": "24px",
+                        "stack-md": "16px",
+                        "sidebar-width": "260px",
+                        "margin-page": "32px",
+                        "stack-xs": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-sm": ["Inter"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "title-sm": ["Hanken Grotesk"],
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "data-mono": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "data-mono": ["13px", { "lineHeight": "18px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #F8FAFC; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .icon-fill { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        
+        .card-shadow { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02); }
+        .locked-overlay { background: repeating-linear-gradient( 45deg, rgba(241, 245, 249, 0.5), rgba(241, 245, 249, 0.5) 10px, rgba(255, 255, 255, 0.5) 10px, rgba(255, 255, 255, 0.5) 20px ); backdrop-filter: blur(2px); }
+    </style>
+</head>
+<body class="text-on-background font-body-md antialiased overflow-hidden">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[260px] bg-primary border-r border-outline-variant shadow-sm flex flex-col py-margin-page z-20">
+<div class="px-stack-md mb-stack-lg flex items-center gap-stack-sm">
+<span class="material-symbols-outlined text-on-primary text-3xl icon-fill" data-icon="inventory_2">inventory_2</span>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary tracking-tight">ESTOQUE</h1>
+<p class="font-body-sm text-body-sm text-on-primary-container">Gestão de Inventário</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto mt-stack-md">
+<ul class="flex flex-col gap-1">
+<li>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md text-body-md">Produtos</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+<span class="font-body-md text-body-md">Movimentações</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-body-md text-body-md">Histórico</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-body-md text-body-md">Usuários</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm bg-secondary-container/10 border-l-4 border-secondary text-secondary-fixed font-bold cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined icon-fill" data-icon="analytics">analytics</span>
+<span class="font-body-md text-body-md">Relatórios</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span class="font-body-md text-body-md">Backup e Segurança</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Configurações</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="mt-auto px-stack-md pt-stack-md border-t border-primary-container/50">
+<ul class="flex flex-col gap-1">
+<li>
+<a class="flex items-center gap-stack-md px-stack-sm py-stack-sm text-on-primary-container/70 hover:text-on-primary transition-colors duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-body-sm text-body-sm">Perfil</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-md px-stack-sm py-stack-sm text-on-primary-container/70 hover:text-on-primary transition-colors duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-sm text-body-sm">Sair</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-260px)] h-20 bg-surface/80 backdrop-blur-md border-b border-outline-variant flex justify-between items-center px-margin-page ml-[260px] z-10">
+<div class="flex-1 flex items-center gap-4">
+<div class="relative w-64 hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-md font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Buscar relatórios..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-stack-lg">
+<div class="flex items-center gap-stack-sm">
+<button class="p-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-md font-body-sm text-body-sm font-semibold hover:bg-primary-container transition-colors shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                Novo Relatório
+            </button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-[260px] mt-20 p-margin-page h-[calc(100vh-80px)] overflow-y-auto">
+<div class="max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-stack-lg">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface">Relatórios</h2>
+<p class="font-body-md text-body-md text-secondary mt-1">Análise consolidada de movimentações e posição de estoque.</p>
+</div>
+<button class="border border-primary text-primary px-4 py-2 rounded-md font-body-sm text-body-sm font-semibold hover:bg-primary hover:text-on-primary transition-all flex items-center gap-2 bg-surface">
+<span class="material-symbols-outlined text-[18px]" data-icon="download">download</span>
+                    Exportar relatório
+                </button>
+</div>
+<!-- Filters -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-stack-md mb-stack-lg card-shadow">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="flex flex-col gap-1">
+<label class="font-body-sm text-body-sm font-semibold text-secondary">Período</label>
+<select class="w-full bg-surface border border-outline-variant rounded-md px-3 py-2 font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+<option>Últimos 30 dias</option>
+<option>Este Mês</option>
+<option>Mês Anterior</option>
+<option>Personalizado</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-body-sm text-body-sm font-semibold text-secondary">Categoria</label>
+<select class="w-full bg-surface border border-outline-variant rounded-md px-3 py-2 font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+<option>Todas as categorias</option>
+<option>Eletrônicos</option>
+<option>Acessórios</option>
+<option>Periféricos</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-body-sm text-body-sm font-semibold text-secondary">Produto</label>
+<input class="w-full bg-surface border border-outline-variant rounded-md px-3 py-2 font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Todos os produtos" type="text"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-body-sm text-body-sm font-semibold text-secondary">Tipo</label>
+<select class="w-full bg-surface border border-outline-variant rounded-md px-3 py-2 font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+<option>Todas as movimentações</option>
+<option>Apenas Entradas</option>
+<option>Apenas Saídas</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Summary Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-stack-lg">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-stack-lg card-shadow flex items-start gap-4">
+<div class="p-3 bg-surface-container-low rounded-full">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="login">login</span>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-secondary mb-1">ENTRADAS NO PERÍODO</p>
+<p class="font-headline-md text-headline-md text-on-surface font-bold">1.245</p>
+<p class="font-body-sm text-body-sm text-secondary mt-1"><span class="text-primary font-medium">+12%</span> vs período anterior</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-stack-lg card-shadow flex items-start gap-4">
+<div class="p-3 bg-surface-container-low rounded-full">
+<span class="material-symbols-outlined text-secondary text-2xl" data-icon="logout">logout</span>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-secondary mb-1">SAÍDAS NO PERÍODO</p>
+<p class="font-headline-md text-headline-md text-on-surface font-bold">892</p>
+<p class="font-body-sm text-body-sm text-secondary mt-1"><span class="text-secondary font-medium">-4%</span> vs período anterior</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-stack-lg card-shadow flex items-start gap-4">
+<div class="p-3 bg-surface-container-low rounded-full">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="sync_alt">sync_alt</span>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-secondary mb-1">PRODUTOS MOVIMENTADOS</p>
+<p class="font-headline-md text-headline-md text-on-surface font-bold">347</p>
+<p class="font-body-sm text-body-sm text-secondary mt-1">SKUs distintos no período</p>
+</div>
+</div>
+</div>
+<!-- Financial Section (Restricted) -->
+<div class="relative bg-surface-container-lowest border border-outline-variant rounded-lg p-stack-lg card-shadow overflow-hidden mb-stack-lg min-h-[200px] flex items-center justify-center">
+<!-- Locked Overlay -->
+<div class="absolute inset-0 locked-overlay z-10 flex flex-col items-center justify-center">
+<div class="bg-surface border border-outline-variant rounded-lg p-stack-md text-center max-w-sm shadow-md">
+<span class="material-symbols-outlined text-secondary text-3xl mb-2" data-icon="lock">lock</span>
+<h3 class="font-title-sm text-title-sm text-on-surface mb-1">Acesso Restrito</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-4">Você não tem permissão para visualizar dados financeiros. Contate o administrador.</p>
+<button class="bg-surface-container-low text-secondary border border-outline-variant px-4 py-2 rounded-md font-body-sm text-body-sm font-semibold hover:bg-surface-variant transition-colors w-full">
+                            Solicitar Acesso
+                        </button>
+</div>
+</div>
+<!-- Blurred Content Below -->
+<div class="w-full opacity-40 blur-sm pointer-events-none select-none">
+<h3 class="font-title-sm text-title-sm text-on-surface mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="request_quote">request_quote</span>
+                        Resumo Financeiro
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div>
+<p class="font-label-caps text-label-caps text-secondary mb-1">VALOR ATUAL DO ESTOQUE</p>
+<p class="font-data-mono text-display-lg text-on-surface font-bold">R$ 1.245.900,00</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-secondary mb-1">CUSTO MÉDIO DE AQUISIÇÃO</p>
+<p class="font-data-mono text-title-sm text-on-surface font-bold">R$ 3.590,50</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

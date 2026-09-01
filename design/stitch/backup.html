@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Backup e Segurança - ESTOQUE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;900&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#fadfb8",
+                      "on-primary-container": "#8590a6",
+                      "on-error-container": "#93000a",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-high": "#eae7e9",
+                      "primary-fixed": "#d8e3fb",
+                      "on-tertiary-container": "#a38c6a",
+                      "on-tertiary-fixed": "#271902",
+                      "on-tertiary-fixed-variant": "#564427",
+                      "inverse-surface": "#303032",
+                      "surface-container": "#f0edef",
+                      "on-error": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed-dim": "#c0c7d6",
+                      "on-surface": "#1b1b1d",
+                      "on-background": "#1b1b1d",
+                      "inverse-primary": "#bcc7de",
+                      "surface": "#fbf8fa",
+                      "on-primary-fixed": "#111c2d",
+                      "surface-bright": "#fbf8fa",
+                      "primary-container": "#1e293b",
+                      "secondary": "#585f6c",
+                      "on-secondary-fixed": "#151c27",
+                      "on-secondary-fixed-variant": "#404754",
+                      "tertiary-container": "#35260c",
+                      "surface-dim": "#dcd9db",
+                      "outline-variant": "#c5c6cd",
+                      "secondary-fixed": "#dce2f3",
+                      "outline": "#75777d",
+                      "surface-container-highest": "#e4e2e3",
+                      "secondary-container": "#dce2f3",
+                      "on-tertiary": "#ffffff",
+                      "background": "#fbf8fa",
+                      "tertiary-fixed-dim": "#ddc39d",
+                      "on-primary-fixed-variant": "#3c475a",
+                      "error": "#ba1a1a",
+                      "on-secondary-container": "#5e6572",
+                      "surface-variant": "#e4e2e3",
+                      "surface-container-low": "#f5f3f4",
+                      "primary-fixed-dim": "#bcc7de",
+                      "surface-tint": "#545f73",
+                      "primary": "#091426",
+                      "on-primary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "inverse-on-surface": "#f3f0f2",
+                      "on-surface-variant": "#45474c",
+                      "tertiary": "#1e1200"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-sm": "8px",
+                      "container-max": "1440px",
+                      "stack-lg": "24px",
+                      "stack-md": "16px",
+                      "sidebar-width": "260px",
+                      "margin-page": "32px",
+                      "stack-xs": "4px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "title-sm": [
+                              "Hanken Grotesk"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "data-mono": [
+                              "JetBrains Mono"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "title-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "data-mono": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[260px] bg-primary text-on-primary-fixed border-r border-outline-variant shadow-sm hidden md:flex flex-col py-margin-page z-20">
+<!-- Brand/Header -->
+<div class="px-margin-page mb-stack-lg">
+<div class="flex items-center gap-stack-sm mb-stack-xs">
+<span class="material-symbols-outlined text-tertiary-fixed text-3xl" data-icon="inventory">inventory</span>
+<span class="font-headline-md text-headline-md font-bold text-on-primary">ESTOQUE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-primary-container">Gestão de Inventário</p>
+</div>
+<!-- Main Navigation -->
+<div class="flex-1 flex flex-col mt-stack-md">
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80 mx-stack-sm rounded-DEFAULT mb-1" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80 mx-stack-sm rounded-DEFAULT mb-1" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-caps text-label-caps">Produtos</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80 mx-stack-sm rounded-DEFAULT mb-1" href="#">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+<span class="font-label-caps text-label-caps">Movimentações</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80 mx-stack-sm rounded-DEFAULT mb-1" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-caps text-label-caps">Histórico</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80 mx-stack-sm rounded-DEFAULT mb-1" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-caps text-label-caps">Usuários</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80 mx-stack-sm rounded-DEFAULT mb-1" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-caps text-label-caps">Relatórios</span>
+</a>
+<!-- Active Tab -->
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm bg-secondary-container/10 border-l-4 border-secondary text-secondary-fixed font-bold cursor-pointer active:opacity-80 mx-stack-sm mb-1" href="#">
+<span class="material-symbols-outlined filled" data-icon="security" data-weight="fill">security</span>
+<span class="font-label-caps text-label-caps">Backup e Segurança</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80 mx-stack-sm rounded-DEFAULT mb-1" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-caps text-label-caps">Configurações</span>
+</a>
+</div>
+<!-- Footer -->
+<div class="mt-auto px-stack-md flex flex-col gap-1">
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80 rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-label-caps text-label-caps">Perfil</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80 rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-caps text-label-caps">Sair</span>
+</a>
+</div>
+</nav>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-260px)] h-20 bg-surface/80 backdrop-blur-md border-b border-outline-variant flex justify-between items-center px-margin-page ml-[260px] z-10 hidden md:flex transition-all duration-300 ease-in-out">
+<div class="flex items-center gap-stack-md">
+<!-- Search Bar (on_left) -->
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full h-10 pl-10 pr-4 rounded-DEFAULT border border-outline-variant bg-surface-container-lowest text-on-surface font-body-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Buscar..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-stack-lg">
+<div class="flex items-center gap-stack-sm">
+<button class="p-2 text-secondary font-medium hover:text-primary transition-all duration-300 ease-in-out rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-secondary font-medium hover:text-primary transition-all duration-300 ease-in-out rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+<!-- Trailing Primary Action -->
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-4 py-2 rounded-DEFAULT hover:bg-primary/90 transition-colors shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                 Novo Produto
+             </button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="md:ml-[260px] pt-28 pb-margin-page px-margin-page max-w-container-max mx-auto">
+<div class="mb-stack-lg">
+<h1 class="font-headline-md text-headline-md text-primary mb-2">Segurança de Dados</h1>
+<p class="font-body-md text-body-md text-secondary">Gerencie os backups do sistema para garantir a integridade e recuperação das informações de inventário.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<!-- Card 1: BACKUP DO SISTEMA -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant shadow-sm p-stack-lg flex flex-col relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary"></div>
+<div class="flex items-start justify-between mb-stack-md">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="cloud_download">cloud_download</span>
+</div>
+<h2 class="font-title-sm text-title-sm text-on-surface">BACKUP DO SISTEMA</h2>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-stack-lg flex-1">
+                    Gere um arquivo seguro contendo o estado atual de todo o banco de dados de estoque, movimentações e usuários. Recomendamos realizar esta ação semanalmente.
+                </p>
+<div class="bg-surface-container-low rounded-DEFAULT border border-outline-variant p-stack-md mb-stack-lg">
+<h3 class="font-label-caps text-label-caps text-secondary mb-3">ÚLTIMO BACKUP REALIZADO</h3>
+<div class="flex justify-between items-center py-2 border-b border-surface-variant last:border-0">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Data</span>
+<span class="font-data-mono text-data-mono text-on-surface">24 Out 2023</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-surface-variant last:border-0">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Hora</span>
+<span class="font-data-mono text-data-mono text-on-surface">14:32 BRT</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-surface-variant last:border-0">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Arquivo</span>
+<span class="font-data-mono text-data-mono text-on-surface">bkp_estq_2410.zip</span>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-caps text-label-caps py-3 rounded-DEFAULT hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="backup">backup</span>
+                    Criar backup agora
+                </button>
+</div>
+<!-- Card 2: RESTAURAR BACKUP -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant shadow-sm p-stack-lg flex flex-col relative">
+<div class="absolute top-0 left-0 w-full h-1 bg-tertiary-fixed"></div>
+<div class="flex items-start justify-between mb-stack-md">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed/30 flex items-center justify-center border border-tertiary-fixed">
+<span class="material-symbols-outlined text-tertiary" data-icon="settings_backup_restore">settings_backup_restore</span>
+</div>
+<h2 class="font-title-sm text-title-sm text-on-surface">RESTAURAR BACKUP</h2>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-stack-lg">
+                    Selecione um arquivo de backup previamente gerado para restaurar o sistema a um estado anterior. Esta ação requer atenção redobrada.
+                </p>
+<!-- File Upload Area -->
+<div class="border-2 border-dashed border-outline-variant rounded-lg bg-surface flex flex-col items-center justify-center py-10 mb-stack-lg hover:bg-surface-container-low transition-colors cursor-pointer group flex-1">
+<span class="material-symbols-outlined text-4xl text-outline mb-2 group-hover:text-primary transition-colors" data-icon="upload_file">upload_file</span>
+<p class="font-body-md text-body-md text-secondary mb-1">Arraste e solte o arquivo aqui ou</p>
+<button class="font-label-caps text-label-caps text-primary underline hover:text-primary/80">
+                        Selecionar arquivo
+                    </button>
+<p class="font-body-sm text-body-sm text-outline mt-2 mt-auto pt-4">.zip ou .sql (Máx 500MB)</p>
+</div>
+<!-- Mock active state for demonstrating the dialog trigger -->
+<button class="w-full bg-transparent border border-outline-variant text-primary font-label-caps text-label-caps py-3 rounded-DEFAULT hover:bg-surface-variant transition-colors flex items-center justify-center gap-2" onclick="document.getElementById('restore-dialog').classList.remove('hidden')">
+<span class="material-symbols-outlined text-sm" data-icon="file_open">file_open</span>
+                    Simular Restauração (Abrir Dialog)
+                </button>
+</div>
+</div>
+</main>
+<!-- Confirmation Dialog Overlay -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-primary/40 backdrop-blur-[4px] hidden" id="restore-dialog">
+<div class="bg-surface-container-lowest rounded-lg shadow-lg border border-outline-variant w-[90%] max-w-md p-stack-lg">
+<div class="flex items-center gap-3 mb-stack-md text-error">
+<span class="material-symbols-outlined text-3xl" data-icon="warning">warning</span>
+<h3 class="font-title-sm text-title-sm">Atenção: Restauração de Dados</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface mb-stack-lg">
+                Você está prestes a substituir os dados atuais. Um backup automático da base atual será criado antes da restauração.
+            </p>
+<div class="bg-error-container/20 border border-error-container p-3 rounded-DEFAULT mb-stack-lg flex gap-2">
+<span class="material-symbols-outlined text-error text-sm mt-0.5" data-icon="info">info</span>
+<p class="font-body-sm text-body-sm text-error/90">Arquivo selecionado: <span class="font-data-mono font-medium">bkp_estq_1510.zip</span></p>
+</div>
+<div class="flex justify-end gap-stack-sm">
+<button class="px-4 py-2 font-label-caps text-label-caps text-secondary border border-outline-variant rounded-DEFAULT hover:bg-surface-variant transition-colors" onclick="document.getElementById('restore-dialog').classList.add('hidden')">
+                    Cancelar
+                </button>
+<button class="px-4 py-2 font-label-caps text-label-caps bg-error text-on-error rounded-DEFAULT hover:bg-error/90 transition-colors shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="restore">restore</span>
+                    Restaurar backup
+                </button>
+</div>
+</div>
+</div>
+</body></html>

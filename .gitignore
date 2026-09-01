@@ -1,5 +1,12 @@
 estoque.db
+*.pre_migracao_*.db
+*.pre_restauracao_*.db
 tema.txt
 __pycache__/
 .venv/
 *.pyc
+.pytest_cache/
+.pytest-tmp/
+*.egg-info/
+build/
+dist/

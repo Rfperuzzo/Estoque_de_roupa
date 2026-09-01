@@ -5,11 +5,23 @@ Responsável por inicializar as configurações globais de interface e instancia
 import customtkinter as ctk
 from interface import SistemaEstoqueApp
 import os
+import sys
+from pathlib import Path
 
 # Constante para o arquivo de configuração de tema
 ARQUIVO_TEMA = "tema.txt"
 
+
+def configurar_diretorio_da_aplicacao():
+    """Mantém banco e preferências ao lado do programa, inclusive congelado."""
+    if getattr(sys, "frozen", False):
+        diretorio = Path(sys.executable).resolve().parent
+    else:
+        diretorio = Path(__file__).resolve().parent
+    os.chdir(diretorio)
+
 if __name__ == "__main__":
+    configurar_diretorio_da_aplicacao()
     tema_atual = "System"
     
     # Recupera a preferência de tema salva localmente

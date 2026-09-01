@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Movimentações - Estoque</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;900&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#fadfb8",
+                      "on-primary-container": "#8590a6",
+                      "on-error-container": "#93000a",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-high": "#eae7e9",
+                      "primary-fixed": "#d8e3fb",
+                      "on-tertiary-container": "#a38c6a",
+                      "on-tertiary-fixed": "#271902",
+                      "on-tertiary-fixed-variant": "#564427",
+                      "inverse-surface": "#303032",
+                      "surface-container": "#f0edef",
+                      "on-error": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed-dim": "#c0c7d6",
+                      "on-surface": "#1b1b1d",
+                      "on-background": "#1b1b1d",
+                      "inverse-primary": "#bcc7de",
+                      "surface": "#fbf8fa",
+                      "on-primary-fixed": "#111c2d",
+                      "surface-bright": "#fbf8fa",
+                      "primary-container": "#1e293b",
+                      "secondary": "#585f6c",
+                      "on-secondary-fixed": "#151c27",
+                      "on-secondary-fixed-variant": "#404754",
+                      "tertiary-container": "#35260c",
+                      "surface-dim": "#dcd9db",
+                      "outline-variant": "#c5c6cd",
+                      "secondary-fixed": "#dce2f3",
+                      "outline": "#75777d",
+                      "surface-container-highest": "#e4e2e3",
+                      "secondary-container": "#dce2f3",
+                      "on-tertiary": "#ffffff",
+                      "background": "#fbf8fa",
+                      "tertiary-fixed-dim": "#ddc39d",
+                      "on-primary-fixed-variant": "#3c475a",
+                      "error": "#ba1a1a",
+                      "on-secondary-container": "#5e6572",
+                      "surface-variant": "#e4e2e3",
+                      "surface-container-low": "#f5f3f4",
+                      "primary-fixed-dim": "#bcc7de",
+                      "surface-tint": "#545f73",
+                      "primary": "#091426",
+                      "on-primary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "inverse-on-surface": "#f3f0f2",
+                      "on-surface-variant": "#45474c",
+                      "tertiary": "#1e1200"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-sm": "8px",
+                      "container-max": "1440px",
+                      "stack-lg": "24px",
+                      "stack-md": "16px",
+                      "sidebar-width": "260px",
+                      "margin-page": "32px",
+                      "stack-xs": "4px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Hanken Grotesk"],
+                      "body-sm": ["Inter"],
+                      "display-lg": ["Hanken Grotesk"],
+                      "title-sm": ["Hanken Grotesk"],
+                      "label-caps": ["Inter"],
+                      "body-md": ["Inter"],
+                      "data-mono": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "data-mono": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .icon-fill { font-variation-settings: 'FILL' 1; }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex antialiased">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[260px] bg-primary dark:bg-primary-container text-on-primary-fixed dark:text-primary-fixed-dim border-r border-outline-variant dark:border-outline shadow-sm flex flex-col py-margin-page z-20 hidden md:flex">
+<!-- Header -->
+<div class="px-stack-lg mb-stack-lg flex items-center gap-stack-sm">
+<span class="material-symbols-outlined text-on-primary icon-fill text-[32px]" data-icon="inventory_2">inventory_2</span>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary dark:text-on-primary-container tracking-tight">ESTOQUE</h1>
+<p class="font-body-sm text-body-sm text-on-primary-container">Gestão de Inventário</p>
+</div>
+</div>
+<!-- Main Navigation -->
+<div class="flex-1 overflow-y-auto flex flex-col gap-stack-xs mt-stack-md">
+<a class="flex items-center gap-stack-md px-stack-lg py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-lg py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-caps text-label-caps">Produtos</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm bg-secondary-container/10 border-l-4 border-secondary text-secondary-fixed font-bold cursor-pointer active:opacity-80 transition-colors duration-200 ml-[4px]" href="#">
+<span class="material-symbols-outlined icon-fill" data-icon="swap_horiz">swap_horiz</span>
+<span class="font-label-caps text-label-caps ml-2">Movimentações</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-lg py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-caps text-label-caps">Histórico</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-lg py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-caps text-label-caps">Usuários</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-lg py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-caps text-label-caps">Relatórios</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-lg py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span class="font-label-caps text-label-caps">Backup e Segurança</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-lg py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-caps text-label-caps">Configurações</span>
+</a>
+</div>
+<!-- Footer Navigation -->
+<div class="mt-auto border-t border-outline/20 pt-stack-md flex flex-col gap-stack-xs">
+<a class="flex items-center gap-stack-md px-stack-lg py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-label-caps text-label-caps">Perfil</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-lg py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-caps text-label-caps">Sair</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-[260px] min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 w-full md:w-[calc(100%-260px)] h-20 bg-surface/80 dark:bg-background/80 backdrop-blur-md border-b border-outline-variant flex justify-between items-center px-margin-page z-10 transition-all duration-300 ease-in-out">
+<!-- Mobile Menu Button & Brand -->
+<div class="flex items-center gap-stack-md md:hidden">
+<button class="p-2 text-primary hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<span class="font-headline-md text-headline-md font-black text-primary">ESTOQUE</span>
+</div>
+<!-- Contextual Title (Web) -->
+<div class="hidden md:block">
+<h2 class="font-title-sm text-title-sm text-primary">Movimentação de Estoque</h2>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-stack-md">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-secondary hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-secondary hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<button class="hidden md:flex items-center gap-2 bg-primary text-on-primary px-4 py-2 rounded-md font-label-caps text-label-caps hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                    Novo Produto
+                </button>
+</div>
+</header>
+<!-- Page Canvas -->
+<main class="flex-1 mt-20 p-margin-page overflow-x-hidden flex justify-center">
+<div class="w-full max-w-[800px] flex flex-col gap-stack-lg">
+<!-- Operation Panel -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant shadow-sm p-stack-lg flex flex-col gap-stack-lg">
+<!-- Search Phase -->
+<div class="flex flex-col gap-stack-sm relative">
+<label class="font-body-sm text-body-sm font-bold text-on-surface" for="productSearch">Selecionar Produto</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-3 border border-outline-variant rounded-md focus:border-[#1E293B] focus:ring-2 focus:ring-[#1E293B]/20 transition-all outline-none font-body-md bg-surface" id="productSearch" placeholder="Buscar produto ou SKU" type="text" value="Cabo de Rede Cat6"/>
+</div>
+</div>
+<!-- Selected Product Card (Simulated Active State) -->
+<div class="bg-surface-container rounded-md p-stack-md border border-outline-variant/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-stack-md">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-data-mono text-data-mono text-secondary px-2 py-0.5 bg-surface rounded text-xs border border-outline-variant">SKU-99201</span>
+</div>
+<h3 class="font-title-sm text-title-sm text-on-surface">Cabo de Rede Cat6 - Rolo 305m</h3>
+</div>
+<div class="text-right">
+<p class="font-body-sm text-body-sm text-secondary uppercase tracking-wide">Qtd. Disponível</p>
+<p class="font-display-lg text-display-lg text-primary leading-none">18</p>
+</div>
+</div>
+<hr class="border-outline-variant/50"/>
+<!-- Operation Type Toggles -->
+<div>
+<label class="font-body-sm text-body-sm font-bold text-on-surface mb-stack-sm block">Tipo de Movimentação</label>
+<div class="grid grid-cols-2 gap-stack-md">
+<button class="relative py-4 rounded-md border-2 border-outline-variant text-secondary hover:border-outline hover:bg-surface-container transition-all flex flex-col items-center justify-center gap-1 group">
+<span class="material-symbols-outlined text-[28px] group-hover:-translate-y-1 transition-transform" data-icon="arrow_downward">arrow_downward</span>
+<span class="font-label-caps text-label-caps">ENTRADA</span>
+</button>
+<!-- Active Saída Toggle -->
+<button class="relative py-4 rounded-md border-2 border-error text-error bg-error-container/20 flex flex-col items-center justify-center gap-1">
+<div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error"></div>
+<span class="material-symbols-outlined text-[28px]" data-icon="arrow_upward">arrow_upward</span>
+<span class="font-label-caps text-label-caps">SAÍDA</span>
+</button>
+</div>
+</div>
+<!-- Input Details -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-lg">
+<div class="col-span-1 flex flex-col gap-stack-sm">
+<label class="font-body-sm text-body-sm font-bold text-on-surface" for="quantity">Quantidade</label>
+<input class="w-full px-4 py-3 border border-outline-variant rounded-md focus:border-[#1E293B] focus:ring-2 focus:ring-[#1E293B]/20 transition-all outline-none font-display-lg text-display-lg text-center h-[52px]" id="quantity" max="18" min="1" type="number" value="5"/>
+</div>
+<div class="col-span-1 md:col-span-2 flex flex-col gap-stack-sm">
+<label class="font-body-sm text-body-sm font-bold text-on-surface" for="obs">Observação (Opcional)</label>
+<input class="w-full px-4 py-3 border border-outline-variant rounded-md focus:border-[#1E293B] focus:ring-2 focus:ring-[#1E293B]/20 transition-all outline-none font-body-md h-[52px]" id="obs" placeholder="Ex: Retirada para projeto X..." type="text"/>
+</div>
+</div>
+<!-- Summary Box -->
+<div class="bg-surface rounded-md border border-outline-variant p-stack-md flex flex-col gap-2">
+<div class="flex justify-between items-center text-secondary font-body-sm text-body-sm">
+<span>Estoque atual:</span>
+<span class="font-data-mono text-data-mono text-on-surface">18</span>
+</div>
+<div class="flex justify-between items-center text-error font-body-sm text-body-sm">
+<span>Quantidade da saída:</span>
+<span class="font-data-mono text-data-mono">- 5</span>
+</div>
+<div class="h-px w-full bg-outline-variant/50 my-1"></div>
+<div class="flex justify-between items-center font-title-sm text-title-sm text-on-surface">
+<span>Saldo após operação:</span>
+<span class="font-data-mono text-data-mono font-bold">13</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="pt-stack-md flex justify-end gap-stack-md border-t border-outline-variant/50">
+<button class="px-6 py-3 rounded-md border border-primary text-primary font-label-caps text-label-caps hover:bg-surface-container transition-colors">
+                            Cancelar
+                        </button>
+<button class="px-8 py-3 rounded-md bg-primary text-on-primary font-label-caps text-label-caps hover:bg-primary-container transition-colors shadow-sm flex items-center gap-2" onclick="showToast()">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span>
+                            Confirmar Movimentação
+                        </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Success Toast (Hidden by default, triggered via JS) -->
+<div class="fixed bottom-margin-page right-margin-page transform translate-y-[150%] opacity-0 bg-surface-container-lowest border border-outline-variant rounded-lg shadow-[0_12px_24px_-8px_rgba(0,0,0,0.08)] p-4 flex items-start gap-3 w-max max-w-sm transition-all duration-300 z-50" id="toast">
+<span class="material-symbols-outlined text-[#10B981] icon-fill mt-0.5" data-icon="check_circle">check_circle</span>
+<div>
+<h4 class="font-title-sm text-title-sm text-on-surface">Sucesso</h4>
+<p class="font-body-sm text-body-sm text-secondary mt-1">Movimentação registrada com sucesso.</p>
+</div>
+<button class="text-secondary hover:text-on-surface ml-4" onclick="hideToast()">
+<span class="material-symbols-outlined text-[18px]" data-icon="close">close</span>
+</button>
+</div>
+<script>
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-[150%]', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            
+            setTimeout(() => {
+                hideToast();
+            }, 4000);
+        }
+
+        function hideToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-0', 'opacity-100');
+            toast.classList.add('translate-y-[150%]', 'opacity-0');
+        }
+    </script>
+</body></html>

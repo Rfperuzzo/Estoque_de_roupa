@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Estoque - Detalhes do Produto</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;900&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#fadfb8",
+                        "on-primary-container": "#8590a6",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#eae7e9",
+                        "primary-fixed": "#d8e3fb",
+                        "on-tertiary-container": "#a38c6a",
+                        "on-tertiary-fixed": "#271902",
+                        "on-tertiary-fixed-variant": "#564427",
+                        "inverse-surface": "#303032",
+                        "surface-container": "#f0edef",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "on-surface": "#1b1b1d",
+                        "on-background": "#1b1b1d",
+                        "inverse-primary": "#bcc7de",
+                        "surface": "#fbf8fa",
+                        "on-primary-fixed": "#111c2d",
+                        "surface-bright": "#fbf8fa",
+                        "primary-container": "#1e293b",
+                        "secondary": "#585f6c",
+                        "on-secondary-fixed": "#151c27",
+                        "on-secondary-fixed-variant": "#404754",
+                        "tertiary-container": "#35260c",
+                        "surface-dim": "#dcd9db",
+                        "outline-variant": "#c5c6cd",
+                        "secondary-fixed": "#dce2f3",
+                        "outline": "#75777d",
+                        "surface-container-highest": "#e4e2e3",
+                        "secondary-container": "#dce2f3",
+                        "on-tertiary": "#ffffff",
+                        "background": "#fbf8fa",
+                        "tertiary-fixed-dim": "#ddc39d",
+                        "on-primary-fixed-variant": "#3c475a",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#5e6572",
+                        "surface-variant": "#e4e2e3",
+                        "surface-container-low": "#f5f3f4",
+                        "primary-fixed-dim": "#bcc7de",
+                        "surface-tint": "#545f73",
+                        "primary": "#091426",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f3f0f2",
+                        "on-surface-variant": "#45474c",
+                        "tertiary": "#1e1200"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "container-max": "1440px",
+                        "stack-lg": "24px",
+                        "stack-md": "16px",
+                        "sidebar-width": "260px",
+                        "margin-page": "32px",
+                        "stack-xs": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-sm": ["Inter"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "title-sm": ["Hanken Grotesk"],
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "data-mono": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "data-mono": ["13px", { "lineHeight": "18px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen">
+<!-- SideNavBar -->
+<nav class="hidden md:flex fixed left-0 top-0 h-full w-[260px] bg-primary dark:bg-primary-container border-r border-outline-variant shadow-sm flex-col py-margin-page z-50">
+<div class="px-margin-page mb-stack-lg">
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary">ESTOQUE</h1>
+<p class="font-body-sm text-body-sm text-on-primary-container">Gestão de Inventário</p>
+</div>
+<div class="flex-1 overflow-y-auto">
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm bg-secondary-container/10 border-l-4 border-secondary text-secondary-fixed font-bold hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-caps text-label-caps">Produtos</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span class="font-label-caps text-label-caps">Movimentações</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-caps text-label-caps">Histórico</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-label-caps">Usuários</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-caps text-label-caps">Relatórios</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">security</span>
+<span class="font-label-caps text-label-caps">Backup e Segurança</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps">Configurações</span>
+</a>
+</div>
+<div class="mt-auto border-t border-outline-variant/20 pt-stack-md">
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-caps text-label-caps">Perfil</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-on-primary-container/70 hover:text-on-primary-container hover:bg-primary-container/50 transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-caps text-label-caps">Sair</span>
+</a>
+</div>
+</nav>
+<!-- TopAppBar -->
+<header class="hidden md:flex fixed top-0 right-0 w-[calc(100%-260px)] h-20 bg-surface/80 backdrop-blur-md border-b border-outline-variant justify-between items-center px-margin-page z-40 transition-all duration-300 ease-in-out">
+<div class="flex items-center gap-stack-md">
+<!-- Search Bar Position (Left) -->
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-highest border border-outline-variant rounded-md py-2 pl-10 pr-3 font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary-fixed focus:ring-2 focus:ring-primary-fixed/20 transition-all" placeholder="Buscar produtos..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-stack-lg">
+<button class="text-secondary font-medium hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-secondary font-medium hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-4 py-2 rounded-md hover:bg-primary-container transition-colors shadow-sm">
+                Novo Produto
+            </button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="md:ml-[260px] pt-[112px] p-margin-page max-w-container-max mx-auto pb-32">
+<!-- Breadcrumb & Actions -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-stack-md mb-stack-lg">
+<div>
+<a class="text-secondary hover:text-primary transition-colors flex items-center gap-1 font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                    Voltar para Produtos
+                </a>
+<h2 class="font-display-lg text-display-lg text-primary mt-1">Camisa Social Oxford</h2>
+</div>
+<div class="flex items-center gap-stack-sm">
+<button class="bg-surface-container border border-primary text-primary font-label-caps text-label-caps px-4 py-2 rounded-md hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+                    Saída
+                </button>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-4 py-2 rounded-md hover:bg-primary-container transition-colors flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Entrada
+                </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Product Overview Card -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-stack-lg flex flex-col md:flex-row gap-stack-lg">
+<!-- Product Image Placeholder -->
+<div class="w-full md:w-1/3 aspect-square rounded-lg border border-outline-variant/50 overflow-hidden bg-surface-container-low flex items-center justify-center relative">
+<img class="w-full h-full object-cover" data-alt="A pristine white Oxford dress shirt neatly folded on a minimalist display table, clean lighting, highly detailed fabric texture, bright modern photography, subtle shadow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxENRHwC54-ETFotlgf73JURQo_4YrGolvg8RsY8YoLYFfl1lMWWTRMCvmj6u1UgtYXH7mc7gklGnVL_NnR9MC_wtxqbJZ9HSSLQByyzQ0QcC_cNoUvnywBRAqAV9hpE6k7HdeEwbLmerkVPESNQ4BfU2xwcLVZW2qTNWi8jQND4S6SxIupPX2oTaHiNIoe1LHrGhGFCgtNtthl-iKbsbA4nBXDfz0EbyKt8yGU5mngcGz5FrOBGE"/>
+</div>
+<!-- Details -->
+<div class="w-full md:w-2/3 flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between mb-stack-sm">
+<h3 class="font-headline-md text-headline-md text-primary">Detalhes do Item</h3>
+<span class="bg-secondary-container text-secondary-fixed font-label-caps text-label-caps px-2 py-1 rounded">Ativo</span>
+</div>
+<div class="grid grid-cols-2 gap-y-stack-md gap-x-stack-lg mt-stack-md">
+<div>
+<span class="font-label-caps text-label-caps text-secondary block mb-1">SKU</span>
+<span class="font-data-mono text-data-mono text-on-surface">OXF-WHT-M-001</span>
+</div>
+<div>
+<span class="font-label-caps text-label-caps text-secondary block mb-1">Categoria</span>
+<span class="font-body-md text-body-md text-on-surface">Vestuário Masculino</span>
+</div>
+<div>
+<span class="font-label-caps text-label-caps text-secondary block mb-1">Tamanho</span>
+<span class="font-body-md text-body-md text-on-surface">M (Médio)</span>
+</div>
+<div>
+<span class="font-label-caps text-label-caps text-secondary block mb-1">Localização</span>
+<span class="font-body-md text-body-md text-on-surface">Corredor C, Prateleira 4</span>
+</div>
+</div>
+</div>
+<!-- Financial Data (Restricted) -->
+<div class="mt-stack-lg p-stack-md bg-surface-container-low rounded-md border border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+<span class="font-body-sm text-body-sm font-medium">Informações Financeiras Restritas</span>
+</div>
+<button class="text-primary hover:underline font-label-caps text-label-caps">Solicitar Acesso</button>
+</div>
+</div>
+</div>
+<!-- Inventory Status Card -->
+<div class="lg:col-span-4 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-stack-lg flex flex-col">
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Status do Estoque</h3>
+<div class="flex-1 flex flex-col justify-center">
+<div class="text-center mb-stack-lg">
+<span class="font-display-lg text-[48px] font-bold text-primary block leading-none mb-2">142</span>
+<span class="font-label-caps text-label-caps text-secondary">Unidades Disponíveis</span>
+</div>
+<div class="space-y-stack-md">
+<div class="flex justify-between items-center pb-2 border-b border-outline-variant/20">
+<span class="font-body-sm text-body-sm text-secondary">Estoque Mínimo</span>
+<span class="font-data-mono text-data-mono text-on-surface font-medium">50</span>
+</div>
+<div class="flex justify-between items-center pb-2 border-b border-outline-variant/20">
+<span class="font-body-sm text-body-sm text-secondary">Estoque Máximo</span>
+<span class="font-data-mono text-data-mono text-on-surface font-medium">300</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-secondary">Saúde do Estoque</span>
+<div class="flex items-center gap-1 text-emerald-600">
+<span class="material-symbols-outlined text-[16px] fill">check_circle</span>
+<span class="font-label-caps text-label-caps">Saudável</span>
+</div>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="mt-stack-lg w-full h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 47%;"></div>
+</div>
+</div>
+</div>
+<!-- History Table Card -->
+<div class="lg:col-span-12 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden mt-stack-md">
+<div class="p-stack-md border-b border-outline-variant bg-surface flex justify-between items-center">
+<h3 class="font-title-sm text-title-sm text-primary">Histórico deste produto</h3>
+<button class="text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="py-3 px-4 font-label-caps text-label-caps text-secondary">Data/Hora</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-secondary">Movimentação</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-secondary text-right">Quantidade</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-secondary text-right">Saldo</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-secondary">Usuário</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-secondary">Observação</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface">
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 px-4 font-data-mono">24/10/2023 14:30</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded text-xs font-medium border border-emerald-100">
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span> Entrada
+                                    </span>
+</td>
+<td class="py-3 px-4 font-data-mono text-right text-emerald-600">+50</td>
+<td class="py-3 px-4 font-data-mono text-right font-medium">142</td>
+<td class="py-3 px-4 flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center text-[10px] font-bold">JD</div>
+                                    João Dias
+                                </td>
+<td class="py-3 px-4 text-secondary truncate max-w-[200px]" title="Recebimento Fornecedor X">Recebimento Fornecedor X</td>
+</tr>
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 px-4 font-data-mono">22/10/2023 09:15</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 text-rose-600 bg-rose-50 px-2 py-0.5 rounded text-xs font-medium border border-rose-100">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span> Saída
+                                    </span>
+</td>
+<td class="py-3 px-4 font-data-mono text-right text-rose-600">-5</td>
+<td class="py-3 px-4 font-data-mono text-right font-medium">92</td>
+<td class="py-3 px-4 flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-tertiary-container text-on-tertiary flex items-center justify-center text-[10px] font-bold">MS</div>
+                                    Maria Silva
+                                </td>
+<td class="py-3 px-4 text-secondary truncate max-w-[200px]" title="Pedido Venda #1042">Pedido Venda #1042</td>
+</tr>
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 px-4 font-data-mono">15/10/2023 16:45</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 text-rose-600 bg-rose-50 px-2 py-0.5 rounded text-xs font-medium border border-rose-100">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span> Saída
+                                    </span>
+</td>
+<td class="py-3 px-4 font-data-mono text-right text-rose-600">-12</td>
+<td class="py-3 px-4 font-data-mono text-right font-medium">97</td>
+<td class="py-3 px-4 flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-tertiary-container text-on-tertiary flex items-center justify-center text-[10px] font-bold">MS</div>
+                                    Maria Silva
+                                </td>
+<td class="py-3 px-4 text-secondary truncate max-w-[200px]" title="Pedido Venda #1038">Pedido Venda #1038</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 px-4 font-data-mono">10/10/2023 10:00</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded text-xs font-medium border border-emerald-100">
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span> Entrada
+                                    </span>
+</td>
+<td class="py-3 px-4 font-data-mono text-right text-emerald-600">+100</td>
+<td class="py-3 px-4 font-data-mono text-right font-medium">109</td>
+<td class="py-3 px-4 flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center text-[10px] font-bold">JD</div>
+                                    João Dias
+                                </td>
+<td class="py-3 px-4 text-secondary truncate max-w-[200px]" title="Estoque Inicial">Estoque Inicial</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</body></html>
